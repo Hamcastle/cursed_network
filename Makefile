@@ -30,7 +30,7 @@ setup_folder_structure:
 	mkdir $(DATA)/validation/neutral/
 	mkdir $(DATA)/test/cursed/
 	mkdir $(DATA)/test/blessed/
-	mkdir $(DATA)/test/netural/
+	mkdir $(DATA)/test/neutral/
 	mkdir $(FUNS)
 	mkdir $(OUT)
 	mkdir $(FIGS)
@@ -48,3 +48,7 @@ get_blessed_images:
 
 get_neutral_images:
 	$(PYTHON) $(FUNS)/get_neutral_images.py
+
+move_images_to_correct_subfolders:
+	$(PYTHON) $(FUNS)/move_images_to_correct_subfolders.py
+

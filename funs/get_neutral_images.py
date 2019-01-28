@@ -1,10 +1,9 @@
 import os
 import sys
+import os
 import glob
 import shutil
-import itertools
 import random
-import numpy as np
 
 from tqdm import tqdm
 

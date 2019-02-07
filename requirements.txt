@@ -123,7 +123,7 @@ python=3.5.5=hc3d631a_4
 python-dateutil=2.7.3=py35_0
 pytz=2018.4=py35_0
 pywavelets=0.5.2=py35h53ec731_0
-pyyaml=3.12=py35h46ef4ae_1
+pyyaml>=4.2b1
 pyzmq=17.0.0=py35h14c3975_0
 qt=5.9.5=h7e424d6_0
 qtconsole=4.3.1=py35h4626a06_0

@@ -20,7 +20,7 @@ chardet=3.0.4=py35hb6e9ddf_1
 click=6.7=py35h353a69f_0
 cloudpickle=0.5.3=py35_0
 conda-verify=2.0.0=py35he912c7b_0
-cryptography=2.2.2=py35h14c3975_0
+cryptography>=2.3
 cycler=0.10.0=py35hc4d5149_0
 cytoolz=0.9.0.1=py35h14c3975_0
 dask=0.18.0=py35_0

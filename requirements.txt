@@ -128,7 +128,7 @@ pyzmq=17.0.0=py35h14c3975_0
 qt=5.9.5=h7e424d6_0
 qtconsole=4.3.1=py35h4626a06_0
 readline=7.0=ha6073c6_4
-requests=2.19.1=py35_0
+requests>=2.20
 ruamel_yaml=0.15.40=py35h14c3975_2
 scikit-image=0.13.1=py35h14c3975_1
 scikit-learn=0.19.1=py35hbf1f462_0

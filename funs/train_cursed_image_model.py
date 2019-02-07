@@ -8,9 +8,10 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Model,Sequential
 from keras.layers import Conv2D, MaxPooling2D,GlobalAveragePooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
-from keras.applications.vgg16 import VGG16, preprocess_input
 from keras.engine.input_layer import Input
 from keras.callbacks import ModelCheckpoint
+import argparse
+
 
 def setup_datagens(train_data_dir,validation_data_dir,img_width,img_height,batch_size):
     train_datagen = ImageDataGenerator(
@@ -86,25 +87,30 @@ def save_trained_model(trained_model,output_path):
         raise
 
 def main():
+    try:
+        ap = argparse.ArgumentParser()
+        app.add_argument("-imw","--img_width",default=224,help="Size to set image widths to")
+        app.add_argument("-imh","--img_height",default=224,help="Size to set image height to")
+        app.add_argument("-btch","--batch_size",default=40,help="Data augmentation bath size")
+        app.add_argument("-e","--epochs",default=75,help="Training epochs")
+        app.add_argument("-o","--output_path",default="out/",help="Destination for the trained model files")
+        app.add_argument("-t","--train_data_dir",default="data/train/",help="Path to the training data")
+        app.add_argument("-v","--validation_data_dir",default="data/validation/",help="Path to the validation data")
 
-    img_width, img_height = 224, 224
 
-    output_path = os.path.expanduser('out/')
-    train_data_dir = os.path.expanduser('data/train/')
-    validation_data_dir = os.path.expanduser('data/validation/')
-    nb_train_samples = len(glob.glob('data/train/cursed/'))
-    nb_validation_samples = len(glob.glob('data/validation/cursed/'))
+        nb_train_samples = len(glob.glob('data/train/cursed/'))
+        nb_validation_samples = len(glob.glob('data/validation/cursed/'))
 
-    epochs = 75
-    batch_size = 40
 
-    train_generator,val_generator=setup_datagens(train_data_dir,validation_data_dir,
-        img_width,img_height,batch_size)
-    model = setup_model()
-    model.compile(optimizer='rmsprop',loss='binary_crossentropy',metrics=['accuracy'])
-    model.fit_generator(train_generator,steps_per_epoch=2000//batch_size,epochs=epochs,validation_data=val_generator,validation_steps=800//batch_size)
-    model.save(output_path+'cursed_image_model.h5')
-    save_trained_model(model,output_path)
+        train_generator,val_generator=setup_datagens(args['train_data_dir'],args['validation_data_dir'],
+            args['img_width'],args['img_height'],args['batch_size'])
+        model = setup_model()
+        model.compile(optimizer='rmsprop',loss='binary_crossentropy',metrics=['accuracy'])
+        model.fit_generator(train_generator,steps_per_epoch=2000//args['batch_size'],epochs=args['epochs'],validation_data=val_generator,validation_steps=800//args['batch_size'])
+        model.save(output_path+'cursed_image_model.h5')
+        save_trained_model(model,output_path)
+    except:
+        raise
 
 if __name__ == '__main__':
     main()

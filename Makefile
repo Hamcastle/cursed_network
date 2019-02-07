@@ -30,8 +30,12 @@ get_cursed_images:
 	java -jar $(FUNS)/ripme/ripme.jar -u "https://twitter.com/cursedimages?lang=en" -l $(DATA)/
 	java -jar $(FUNS)/ripme/ripme.jar -u "https://www.reddit.com/r/cursedimages/"   -l $(DATA)/
 
-move_images_to_correct_subfolders:
-	$(PYTHON) $(FUNS)/move_images_to_correct_subfolders.py
+move_images_to_correct_subfolders: 
+	python $(FUNS)/move_images_to_correct_subfolders.py
+
+train_model:
+	python $(FUNS)/train_cursed_image_model.py
+
 
 cleanup_data_dir:
 	rm -rf $(DATA)/cursed/

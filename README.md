@@ -1,6 +1,12 @@
 # Introduction
 
-This is a very simple convnet classifier trained over a set of so-called "cursed" images scraped from [various](https://twitter.com/cursedimages) [sources](https://www.reddit.com/r/cursedimages/) and an equivalent number of "uncursed" images taken from the ["MIT 1003"](http://people.csail.mit.edu/tjudd/WherePeopleLook/index.html) image dataset. As currently configured, the model gets to around ~72% accuracy over a 50% base rate. Plans are in the wings to improve it using some straightforward tweaks.
+This is a very simple convnet classifier trained over a set of so-called "cursed" images scraped from [various](https://twitter.com/cursedimages) [sources](https://www.reddit.com/r/cursedimages/) and an equivalent number of "uncursed" images taken from the ["MIT 1003"](http://people.csail.mit.edu/tjudd/WherePeopleLook/index.html) image dataset. 
+
+**EDIT**: I've tweaked the model a bit since the original round of commits and the performance is better (~80% accuracy now):
+
+![](example_imgs/cursed_image_model_roc.png) 
+
+I think the training/testing code should still work with the new model architecture, making it a straight-up drop-in replacement. 
 
 If you don't know what a cursed image is, I highly recommend this video as an introduction (the section towards the end where they play "blessed or cursed" is what inspired this, neural networks are basically just foam alien puppet anthropologists anyway) :
 
@@ -19,7 +25,7 @@ I'll put up some of the work I've been doing along these lines when it's a littl
 # How do I use this?
 
 1. Clone or download the repository.
-2. Download my pre-trained model architecture and weights from [this link](https://tinyurl.com/yakeglyf). Extract the h5 and the json files from the package and move them to the "out" directory in this repository.
+2. Download my pre-trained model architecture and weights from [this link](http://tinyurl.com/yakeglyf). Extract the h5 and the json files from the package and move them to the "out" directory in this repository.
 3. Setup an appropriate Python environment using the provided requirements.txt file (I recommend Anaconda).
 3. If you want to train your own version of the network, I've provided code to do so both for setting up the tools to scrape the images and to train the model. Run the first three commands in the Makefile to setup the right folder structure in the repository, download [RipMe](https://github.com/RipMeApp/ripme), and scrape from the cursed images Twitter and subreddit. Run the "train_model" make command to train the network (you can alter argparse parameters for the model training process in the training function file).
 4. Add your own "neutral" images from whatever free source you've got to hand. The dataset I used is nice in that it contains a pretty broad range of lighting conditions, scene contexts, human/face content, photographic vantage points, etc, and that will definitely help your model make more accurate judgments.

@@ -19,7 +19,9 @@ def load_image(image_path):
 	'''
 	try:
 		image = cv2.imread(image_path)
+		image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 		orig  = image.copy()
+		orig  = cv2.cvtColor(orig,cv2.COLOR_BGR2RGB)
 		image = cv2.resize(image,(224,224))
 		image = image.astype("float")/255.0
 		image = img_to_array(image)
@@ -34,7 +36,6 @@ def load_pretrained_model(model_path):
 	Output: a trained model
 	'''
 	try:
-		path_to_json    = os.path.expanduser(model_path)+'cursed_image_model.json'
 		path_to_weights = os.path.expanduser(model_path)+'cursed_image_model.h5'
 		with CustomObjectScope({'relu6': keras.applications.mobilenet.mobilenet.relu6,'DepthwiseConv2D': keras.layers.DepthwiseConv2D}):
 			model = load_model(path_to_weights)
@@ -50,9 +51,8 @@ def generate_class_prediction(image,model):
 	'''
 	try:
 		preds_conf  = model.predict(image)[0][0]
-		preds_class = model.predict_classes(image)
 		#Setup the string label
-		if preds_class == 0:
+		if preds_conf <= 0.5:
 			text_class  = 'Cursed'
 			probability = (1 - preds_conf)*100
 		else:

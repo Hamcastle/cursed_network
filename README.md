@@ -8,6 +8,8 @@ This is a very simple convnet classifier trained over a set of so-called "cursed
 
 I think the training/testing code should still work with the new model architecture, making it a straight-up drop-in replacement. 
 
+## What the hell are cursed images?!
+
 If you don't know what a cursed image is, I highly recommend this video as an introduction (the section towards the end where they play "blessed or cursed" is what inspired this, neural networks are basically just foam alien puppet anthropologists anyway) :
 
 [![memesplaining](https://i.ytimg.com/vi/SsNBhWxUIb0/hqdefault.jpg?sqp=-oaymwEjCPYBEIoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLC8Ss18wZCfja2FG9VDjlxLOoZu1A)](https://youtu.be/SsNBhWxUIb0) 
